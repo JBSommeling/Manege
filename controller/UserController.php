@@ -1,6 +1,17 @@
 <?php 
 require(ROOT . "model/UserModel.php");
 
+function index(){
+
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+	    header("location:".URL."user/loginform");
+    exit;
+}
+	render("user/index");
+}
 
 function loginform(){
 	$username = $password = "";
@@ -11,14 +22,14 @@ function loginform(){
 	
 	    // Check if username is empty
 	    if(empty (formVal($_POST["username"]))){
-	        $username_err = "Please enter username.";
+	        $username_err = "Verlpichte veld.";
 	    } else{
 	        $username = formVal($_POST["username"]);
 	    }
 	    
 	    // Check if password is empty
 	    if(empty(formVal($_POST["password"]))){
-	        $password_err = "Please enter your password.";
+	        $password_err = "Verplicht om wachtwoord in te voeren.";
 	    } else{
 	        $password = formVal($_POST["password"]);
 	    }
@@ -28,10 +39,12 @@ function loginform(){
 	    	$param_username = formVal($_POST['username']);
 	    	$row = getUsername($param_username);
 	    	if($row){
+	    		var_dump($row);
 	    		$id = $row["id"];
 	            $username = $row["username"];
 	            $hashed_password = $row["password"];
-	            if(password_verify($password, $hashed_password)){
+	            var_dump($hashed_password);
+	            if($password == $hashed_password){
 	            	// Password is correct, so start a new session
 	                session_start();
 	                            
@@ -41,22 +54,39 @@ function loginform(){
 	                $_SESSION["username"] = $username;                            
 	                            
 	                // Redirect user to welcome page
-	                header("location: ".URL."blog/index.php");
+	                header("location: ".URL."user/index");
 	                exit();
 	            }
 	            else{
 	            	// Display an error message if password is not valid
-	                $password_err = "The password you entered was not valid.";
+	                $password_err = "Wachtwoord komt niet overeen.";
 	            }
 	    	}
 	        else{
 	            // Display an error message if password is not valid
-	            $password_err = "The password you entered was not valid.";
+	            $password_err = "Wachtwoord komt niet overeen.";
 	        }
 	    }
-        render("user/loginform", array('user_name_Err' => $username_err,
-        							'user_password_Err' => $password_err));
+        
 	}
+	render("user/loginform", array('user_name_Err' => $username_err,
+        							'user_password_Err' => $password_err));
+}
+
+function logout(){
+	// Initialize the session
+	session_start();
+	 
+	// Unset all of the session variables
+	$_SESSION = array();
+	 
+	// Destroy the session.
+	session_destroy();
+	// Redirect to login page
+	header("location:".URL."user/loginform");
+	exit;
+
+	render("user/logout");
 }
 
 function create(){

@@ -24,11 +24,17 @@
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo URL ?>user/create">Registeren</a>
 						</li>
+						<?php if ($_SESSION['loggedin'] == true){ ?>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Paard Reserveren</a>
 						</li>
+						<?php } ?>
 						<li class="nav-item">
+							<?php if ($_SESSION['loggedin'] == true){ ?>
+							<a class="nav-link" href="<?php echo URL ?>user/logout">Logout</a>
+							<?php } else{ ?>
 							<a class="nav-link" href="<?php echo URL ?>user/loginform">Login</a>
+							<?php } ?>
 						</li>						
 						<li class="nav-item dropdown"> <!-- Voor een dropdown belangrijk! -->
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Products</a> <!-- Voor een dropdown belangrijk! class en id en data-toggle -->

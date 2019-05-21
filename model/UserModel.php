@@ -15,8 +15,6 @@
 	                    // Display an error message if username doesn't exist
 	                    return false;
 	                }
-	        unset($stmt);
-	        unset($conn);
 			$conn = null;
 }
 

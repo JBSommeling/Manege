@@ -1,3 +1,5 @@
+<?php var_dump($_SESSION['loggedin']); ?>
+
 <div class="row">
 	<div class="jumbotron mb-4 col-12">
 		<form method="POST">
@@ -9,7 +11,7 @@
 				<label for="password">Password: <span class="text-danger">* <?php echo $user_password_Err ?></span></label>
 				<input type="password" class="form-control" name="password" id="password">
 			</div>
-			<button type="submit" class="btn btn-secondary">Send</button>
+			<button type="submit" class="btn btn-secondary">Inloggen</button>
 		</form>
 	</div>
 </div>
