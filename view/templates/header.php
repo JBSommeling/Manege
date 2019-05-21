@@ -13,14 +13,17 @@
 	<div class="row">
 		<div class="headerImage col-12"></div>
 			<nav class=" col-12 navbar navbar-expand-lg navbar-dark bg-primary">
+				<?php if ($_SESSION['loggedin'] == true){ ?>
+				<a href="<?php echo URL ?>user/index" class=navbar-brand>Manege Bleijenberg</a>
+				<?php } else{ ?>
 				<a href="<?php echo URL ?>home/index" class="navbar-brand">Manege Bleijenberg</a> <!-- Voor de Logo -->
-
+				<?php } ?>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"> <!-- Belangrijk # in data-target --> 
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto"> <!-- ml auto = margin left auto pushes everything to the right -->
+					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo URL ?>user/create">Registeren</a>
 						</li>

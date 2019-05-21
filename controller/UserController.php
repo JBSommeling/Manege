@@ -25,7 +25,7 @@ function loginform(){
 	
 	    // Check if username is empty
 	    if(empty (formVal($_POST["username"]))){
-	        $username_err = "Verlpichte veld.";
+	        $username_err = "Verplicht veld.";
 	    } else{
 	        $username = formVal($_POST["username"]);
 	    }
@@ -42,7 +42,6 @@ function loginform(){
 	    	$param_username = formVal($_POST['username']);
 	    	$row = getUsername($param_username);
 	    	if($row){
-	    		var_dump($row);
 	    		$id = $row["id"];
 	            $username = $row["username"];
 	            $hashed_password = $row["password"];
