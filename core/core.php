@@ -27,3 +27,10 @@ function render($filename, $data = null)
 	require(ROOT . 'view/' . $filename . '.php');
 	require(ROOT . 'view/templates/footer.php');
 }
+
+function formVal($data) {
+ 	$data = trim($data);
+ 	$data = stripslashes($data);
+ 	$data = htmlspecialchars($data);
+  	return $data;
+}

@@ -1,1 +1,71 @@
+/*HEADER*/
+.headerImage{
+	background-image: url('../img/manege.png');
+	height: 25rem;
+	background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
+.navbar.bg-primary{
+	background-color: #1B1464 !important;
+}
+
+/*CAROUSEL*/
+.first{
+	background-image: url('../img/horse1.jpg');
+	background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 25rem;
+}
+
+.second{
+	background-image: url('../img/horse2.jpg');
+	background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 25rem;
+}
+
+.third{
+	background-image: url('../img/horse3.jpg');
+	background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 25rem;
+}
+
+.carousel.slide{
+	padding-right:0 !important;
+	padding-left:0 !important;
+}
+
+.col-12.carousel-inner{
+	padding-right:0 !important;
+	padding-left:0 !important;
+}
+
+/*CONTENT*/
+.jumbotron{
+	margin-bottom: 0 !important;
+	background-color: white !important;
+}
+
+.line.col-12{
+	height: 5px;
+	background-color: #1B1464;
+}
+/*FOOTER*/
+.footer{
+	height: 2.5rem;
+	background-color: #1B1464;
+}
+
+.footer p{
+	color: white;
+	font-weight: 800;
+	position: relative;
+	top: 0.5rem;
+	margin-bottom: 0;
+}
