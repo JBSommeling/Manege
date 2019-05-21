@@ -27,6 +27,15 @@ function getUser($username){
 	return $stmt->fetch();
 }
 
+function getUserById($id){
+	$conn = openDatabaseConnection();
+
+	$sql = "SELECT * FROM users WHERE id = :id";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([':id' => $id]);
+	return $stmt->fetch();
+}
+
 function createUser($username, $adress, $telephone, $password){
 	$conn = openDatabaseConnection();
 

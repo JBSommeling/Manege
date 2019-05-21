@@ -1,7 +1,7 @@
 <?php 
 require(ROOT . "model/UserModel.php");
 
-function index(){
+function index($feedback = ""){
 
 	session_start();
  
@@ -13,7 +13,8 @@ function index(){
 
 	$username = $_SESSION['username'];
 	$result = getUser($username);
-	render("user/index", array('result' => $result));
+	render("user/index", array('result' => $result,
+								'feedback' => $feedback));
 }
 
 function loginform(){
@@ -45,7 +46,6 @@ function loginform(){
 	    		$id = $row["id"];
 	            $username = $row["username"];
 	            $hashed_password = $row["password"];
-	            var_dump($hashed_password);
 	            if($password == $hashed_password){
 	            	// Password is correct, so start a new session
 	                session_start();
@@ -176,5 +176,20 @@ function create(){
 
 	if ($validate){
 		createUser($fields['username'], $fields['adress'], $fields['telephone'], $fields['password']);
+		header('Location: '.URL.'home/index/created_user');
+		exit();
 	}
+}
+
+function edit($id){
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location:".URL."user/loginform");
+	    exit;
+	}
+	$result = getUserById($id);
+
+	render('user/edit', array('result' => $result));
 }

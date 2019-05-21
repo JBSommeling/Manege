@@ -1,6 +1,7 @@
 <?php
 
-function index()
+function index($feedback = "")
 {
-	render("home/index");	
+	session_start();
+	render("home/index", array('feedback' => $feedback));	
 }

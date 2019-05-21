@@ -12,6 +12,16 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="headerImage col-12"></div>
+			<?php if ($feedback == 'created_user'){ ?>
+				<div class="col-12 text-center alert alert-success" role="alert">
+					Gebruiker succesvol geregistreerd.
+				</div>
+			<?php } 
+			elseif ($feedback == 'no_changes' ) {?>
+				<div class="col-12 text-center alert alert-warning" role="alert">
+					Geen wijzigingen opgeslagen.
+				</div>
+			<?php } ?>
 			<nav class=" col-12 navbar navbar-expand-lg navbar-dark bg-primary">
 				<?php if ($_SESSION['loggedin'] == true){ ?>
 				<a href="<?php echo URL ?>user/index" class=navbar-brand>Manege Bleijenberg</a>
