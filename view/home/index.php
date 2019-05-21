@@ -33,6 +33,6 @@
 		<div class="jumbotron col-12">
 			<h1 class="lead text-center">Welkom bij Manege Bleijenberg</h1>
 			<br>
-			<p>Als bezoeker kunt u een ritje op een van onze paarden maken. Wilt u een paard reserveren? Dan kan dat <a href="<?php URL ?>paard/index">hier</a>.</p>
+			<p>Als bezoeker kunt u een ritje op een van onze paarden maken. Wilt u een paard reserveren? Registreert u zich dan eerst <a href="<?php echo URL ?>user/create">hier.</a>
 		</div>
 	</div>

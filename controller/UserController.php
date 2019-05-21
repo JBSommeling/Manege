@@ -7,10 +7,13 @@ function index(){
  
 	// Check if the user is logged in, if not then redirect to login page
 	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-	    header("location:".URL."user/loginform");
-    exit;
-}
-	render("user/index");
+		header("location:".URL."user/loginform");
+	    exit;
+	}
+
+	$username = $_SESSION['username'];
+	$result = getUser($username);
+	render("user/index", array('result' => $result));
 }
 
 function loginform(){
@@ -90,6 +93,7 @@ function logout(){
 }
 
 function create(){
+	session_start();
 	$fields = ['username' => "",
 				'password' => "",
 				'confirm_password' => "",

@@ -1,3 +1,5 @@
+<?php var_dump($_SESSION['loggedin']); ?>
+
 <div class="row">
 	<div class="jumbotron mb-4 col-12">
 		<form method="POST">

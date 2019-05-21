@@ -28,6 +28,15 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#">Paard Reserveren</a>
 						</li>
+						<li class="nav-item dropdown"> <!-- Voor een dropdown belangrijk! -->
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Overzichten</a> <!-- Voor een dropdown belangrijk! class en id en data-toggle -->
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Overzicht leden</a>
+								<a class="dropdown-item" href="#">Overzicht paarden</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Product 1</a>
+							</div>
+						</li>
 						<?php } ?>
 						<li class="nav-item">
 							<?php if ($_SESSION['loggedin'] == true){ ?>
@@ -36,18 +45,6 @@
 							<a class="nav-link" href="<?php echo URL ?>user/loginform">Login</a>
 							<?php } ?>
 						</li>						
-						<li class="nav-item dropdown"> <!-- Voor een dropdown belangrijk! -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Products</a> <!-- Voor een dropdown belangrijk! class en id en data-toggle -->
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">Product 1</a>
-								<a class="dropdown-item" href="#">Product 1</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Product 1</a>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Contact</a>
-						</li>
 					</ul>
 				</div>
 			</nav>

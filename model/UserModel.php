@@ -18,6 +18,15 @@
 			$conn = null;
 }
 
+function getUser($username){
+	$conn = openDatabaseConnection();
+
+	$sql = "SELECT * FROM users WHERE username = :username";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([':username' => $username]);
+	return $stmt->fetch();
+}
+
 function createUser($username, $adress, $telephone, $password){
 	$conn = openDatabaseConnection();
 
