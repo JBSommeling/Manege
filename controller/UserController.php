@@ -11,10 +11,24 @@ function index($feedback = ""){
 	    exit;
 	}
 
-	$username = $_SESSION['username'];
-	$result = getUser($username);
+	$id = $_SESSION['id'];
+	$result = getUser($id);
 	render("user/index", array('result' => $result,
 								'feedback' => $feedback));
+}
+
+function read($feedback = ""){
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location:".URL."user/loginform");
+	    exit;
+	}
+
+	$result = getAllUsers();
+	render('user/read', array('result' => $result,
+							'feedback' => $feedback));
 }
 
 function loginform(){
@@ -87,8 +101,6 @@ function logout(){
 	// Redirect to login page
 	header("location:".URL."user/loginform");
 	exit;
-
-	render("user/logout");
 }
 
 function create(){
@@ -189,7 +201,76 @@ function edit($id){
 		header("location:".URL."user/loginform");
 	    exit;
 	}
-	$result = getUserById($id);
+	$result = getUser($id);
 
-	render('user/edit', array('result' => $result));
+	$fields = ['username' => "",
+				'adress' => "",
+				'telephone' => ""];
+	
+	$fieldErr = ['username' => "",
+				'adress' => "",
+				'telephone' => ""];
+
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		$validate = true;
+		if (empty($_POST['username'])){
+			$fieldErr['username'] = 'Veld is verplicht.';
+			$validate = false;
+		}
+		else{
+			$fields['username'] = formVal($_POST['username']);
+			if (!preg_match("/^[a-zA-Z- ]*$/",$fields['username'])) {
+				$fieldErr['username'] = 'Alleen letters.';
+				$fields['username'] = "";
+				$validate = false;
+			}
+		}
+
+		if (empty($_POST['adress'])){
+			$fieldErr['adress'] = 'Veld is verplicht';
+			$validate = false;
+		}
+		else{
+			$fields['adress'] = formVal($_POST['adress']);
+		}
+
+		if (empty($_POST['telephone'])){
+			$fieldErr['telephone'] = 'Veld is verplicht';
+			$validate = false;
+		}
+		else{
+			$fields['telephone'] = formVal($_POST['telephone']);
+			if (!preg_match("/^[0-9 ]*$/",$fields['telephone'])) {
+				$fieldErr['telephone'] = 'Alleen cijfers.';
+				$fields['telephone'] = "";
+				$validate = false;
+			}
+		}
+	}
+
+
+	render('user/edit', array('result' => $result,
+							'username_err' => $fieldErr['username'],
+							'adress_err' => $fieldErr['adress'],
+							'telephone_err' => $fieldErr['telephone']));
+
+	if($validate){
+		updateUser($fields['username'], $fields['adress'], $fields['telephone'], $id);
+		header('Location: ' .URL. 'user/index/edited');
+	}
+}
+
+function delete($id){
+	session_start();
+ 
+	// Check if the user is logged in, if not then redirect to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location:".URL."user/loginform");
+	    exit;
+	}
+
+	deleteUser($id);
+
+	header('Location: '.URL.' user/read/deleted');
+	exit();
 }

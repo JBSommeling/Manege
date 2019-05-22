@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 21 mei 2019 om 12:36
+-- Gegenereerd op: 22 mei 2019 om 13:35
 -- Serverversie: 5.6.37
 -- PHP-versie: 7.1.8
 
@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `horses`
+--
+
+CREATE TABLE IF NOT EXISTS `horses` (
+  `horse_id` int(11) NOT NULL,
+  `horse_name` varchar(255) NOT NULL,
+  `horse_breed` varchar(255) NOT NULL,
+  `horse_age` int(11) NOT NULL,
+  `wither_height` float NOT NULL,
+  `horse_pony` tinyint(1) NOT NULL,
+  `horse_jumping` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `users`
 --
 
@@ -31,20 +47,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(255) NOT NULL,
   `adress` varchar(255) NOT NULL,
   `telephone` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `adress`, `telephone`, `password`) VALUES
-(1, 'test', '', '', 'test'),
-(2, 'Jesse', 'Test', '000000', 'test');
+INSERT INTO `users` (`id`, `username`, `adress`, `telephone`, `user_id`, `password`) VALUES
+(12, 'Jesse', 'Dordrecht Leerpark', '123456', 469310323, 'test');
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `horses`
+--
+ALTER TABLE `horses`
+  ADD PRIMARY KEY (`horse_id`);
 
 --
 -- Indexen voor tabel `users`
@@ -57,10 +79,15 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `horses`
+--
+ALTER TABLE `horses`
+  MODIFY `horse_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

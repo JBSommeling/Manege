@@ -56,6 +56,11 @@
 	height: 5px;
 	background-color: #1B1464;
 }
+
+.form-control{
+	width: 15rem !important;
+}
+
 /*FOOTER*/
 .footer{
 	height: 2.5rem;

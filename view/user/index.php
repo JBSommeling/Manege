@@ -4,7 +4,8 @@
 			<br>
 			<p>Uw adres is: <?php echo $result['adress']; ?> <br>
 				Uw telefoonnummer is <?php echo $result['telephone']; ?> <br>
-				Klopt dit nog? Wijzig <a href="<?php echo URL ?>user/edit/<?php echo $result['id']; ?>">hier.</a>
+				Klopt dit nog? Wijzig <a href="<?php echo URL ?>user/edit/<?php echo $result['id']; ?>">hier.</a> <br> <br>
+				Uw ruiters id is <?php echo $result['user_id']; ?>
 			</p>
 		</div>
 	</div>
