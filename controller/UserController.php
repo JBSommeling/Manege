@@ -3,13 +3,7 @@ require(ROOT . "model/UserModel.php");
 
 function index($feedback = ""){
 
-	session_start();
- 
-	// Check if the user is logged in, if not then redirect to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-		header("location:".URL."user/loginform");
-	    exit;
-	}
+	login();
 
 	$id = $_SESSION['id'];
 	$result = getUser($id);
@@ -18,13 +12,7 @@ function index($feedback = ""){
 }
 
 function read($feedback = ""){
-	session_start();
- 
-	// Check if the user is logged in, if not then redirect to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-		header("location:".URL."user/loginform");
-	    exit;
-	}
+	login();
 
 	$result = getAllUsers();
 	render('user/read', array('result' => $result,
@@ -194,13 +182,7 @@ function create(){
 }
 
 function edit($id){
-	session_start();
- 
-	// Check if the user is logged in, if not then redirect to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-		header("location:".URL."user/loginform");
-	    exit;
-	}
+	login();
 	$result = getUser($id);
 
 	$fields = ['username' => "",
@@ -261,13 +243,7 @@ function edit($id){
 }
 
 function delete($id){
-	session_start();
- 
-	// Check if the user is logged in, if not then redirect to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-		header("location:".URL."user/loginform");
-	    exit;
-	}
+	login();
 
 	deleteUser($id);
 
