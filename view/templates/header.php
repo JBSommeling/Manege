@@ -57,7 +57,7 @@
 						<?php } ?>
 						<?php if ($_SESSION['loggedin'] == true){ ?>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Paard Reserveren</a>
+							<a class="nav-link" href="<?php echo URL ?>reservation/create">Paard Reserveren</a>
 						</li>
 						<li class="nav-item dropdown"> <!-- Voor een dropdown belangrijk! -->
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Overzichten</a> <!-- Voor een dropdown belangrijk! class en id en data-toggle -->

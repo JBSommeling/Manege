@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 22 mei 2019 om 13:35
+-- Gegenereerd op: 24 mei 2019 om 12:24
 -- Serverversie: 5.6.37
 -- PHP-versie: 7.1.8
 
@@ -34,7 +34,35 @@ CREATE TABLE IF NOT EXISTS `horses` (
   `wither_height` float NOT NULL,
   `horse_pony` tinyint(1) NOT NULL,
   `horse_jumping` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `horses`
+--
+
+INSERT INTO `horses` (`horse_id`, `horse_name`, `horse_breed`, `horse_age`, `wither_height`, `horse_pony`, `horse_jumping`) VALUES
+(5, 'Horsea', 'Pokemon', 5, 140, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `reservations`
+--
+
+CREATE TABLE IF NOT EXISTS `reservations` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `horse_id` int(11) NOT NULL,
+  `rides` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `user_id`, `horse_id`, `rides`) VALUES
+(1, 469310323, 5, 2),
+(5, 469310323, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -49,14 +77,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `telephone` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `adress`, `telephone`, `user_id`, `password`) VALUES
-(12, 'Jesse', 'Dordrecht Leerpark', '123456', 469310323, 'test');
+(12, 'Jesse', 'Dordrecht Leerpark', '123456', 469310323, 'test'),
+(16, 'Karel', 'Leerpark Promenade Dordrecht', '000000', 1498138103, 'test'),
+(17, 'Joop', 'Leerpark Promenade Dordrecht', '000000', 2080613952, 'test');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -67,6 +97,12 @@ INSERT INTO `users` (`id`, `username`, `adress`, `telephone`, `user_id`, `passwo
 --
 ALTER TABLE `horses`
   ADD PRIMARY KEY (`horse_id`);
+
+--
+-- Indexen voor tabel `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `users`
@@ -82,12 +118,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `horses`
 --
 ALTER TABLE `horses`
-  MODIFY `horse_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `horse_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT voor een tabel `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
