@@ -12,6 +12,11 @@ function read(){
 function create(){
 	login();
 
+	render('horse/create');
+}
+
+function store(){
+	login();
 	$fields = ['horse_name' => '',
 				'horse_breed' => '',
 				'horse_age' => '',
@@ -79,28 +84,38 @@ function create(){
 			$validate = false;
 		}
 			//Als schofthoogte lager is dan 147.5 dan is het een pony en niet geschik voor springsport.
-	}
 
+	}
+	
 	if ($validate) {
 		createHorse($fields);
 		header('Location: '.URL. 'user/index/created_horse');
 	}
-
-	render('horse/create', array('fields' => $fields,
+	else{
+		//header('Location: '.URL. 'horse/create');
+		render('horse/create', array('fields' => $fields,
 								'fieldErr' => $fieldErr));
+	}
 }
 
 function edit($id){
 	login();
-
 	$result = getHorse($id);
+	render('horse/edit', array('result' => $result));
+}
+
+function update($horse_id){
+	
+	login();
+
 
 	$fields = ['horse_name' => '',
 				'horse_breed' => '',
 				'horse_age' => '',
 				'wither_height' => '',
 				'horse_jumping' => '',
-				'horse_pony' => ''];
+				'horse_pony' => '',
+				'horse_id' => $horse_id];
 
 	$fieldErr = [];
 
@@ -168,7 +183,11 @@ function edit($id){
 		updateHorse($fields);
 		header('Location: '.URL. 'user/index/edited_horse');
 	}
+	else{
+		render('horse/edit', array('result' => $fields,
+							'fieldErr' => $fieldErr,
+							'id' => $id));
+	}
 
-	render('horse/edit', array('result' => $result,
-							'fieldErr' => $fieldErr));
+	
 }

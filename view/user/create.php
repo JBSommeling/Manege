@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="jumbotron mb-4 col-12">
-		<form method="POST">
+		<form method="POST" action="<?php echo URL ?>/user/store">
 			<div class="form-group">
 				<label for="name">Naam: <span class="text-danger">* <?php echo $username_err ?></span></label>
 				<input type="text" class="form-control" name="username" id="username" value="<?php  echo $username ?>">

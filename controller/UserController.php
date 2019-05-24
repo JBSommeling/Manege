@@ -93,6 +93,11 @@ function logout(){
 
 function create(){
 	session_start();
+
+	render("user/create");
+}
+
+function store(){
 	$fields = ['username' => "",
 				'password' => "",
 				'confirm_password' => "",
@@ -162,9 +167,13 @@ function create(){
 			}
 		}
 	}
-
-
-	render("user/create", array('username_err' => $fieldErr['username'],
+	if ($validate){
+		createUser($fields['username'], $fields['adress'], $fields['telephone'], $fields['password']);
+		header('Location: '.URL.'home/index/created_user');
+		exit();
+	}
+	else{
+		render("user/create", array('username_err' => $fieldErr['username'],
 									'user_password_err' => $fieldErr['password'],
 									'confirm_password_err' =>$fieldErr['confirm_password'],
 									'adress_err' => $fieldErr['adress'],
@@ -172,22 +181,21 @@ function create(){
 									'username' => $fields['username'],
 									'adress' => $fields['adress'],
 									'telephone' => $fields['telephone']));
-
-
-	if ($validate){
-		createUser($fields['username'], $fields['adress'], $fields['telephone'], $fields['password']);
-		header('Location: '.URL.'home/index/created_user');
-		exit();
 	}
 }
 
 function edit($id){
 	login();
 	$result = getUser($id);
+	render('user/edit', array('result' => $result));
+}
 
+function update($id){
+	login();
 	$fields = ['username' => "",
 				'adress' => "",
-				'telephone' => ""];
+				'telephone' => "",
+				'id' => $id];
 	
 	$fieldErr = ['username' => "",
 				'adress' => "",
@@ -231,14 +239,16 @@ function edit($id){
 	}
 
 
-	render('user/edit', array('result' => $result,
-							'username_err' => $fieldErr['username'],
-							'adress_err' => $fieldErr['adress'],
-							'telephone_err' => $fieldErr['telephone']));
-
+	
 	if($validate){
 		updateUser($fields['username'], $fields['adress'], $fields['telephone'], $id);
 		header('Location: ' .URL. 'user/index/edited');
+	}
+	else{
+		render('user/edit', array('result' => $fields,
+							'username_err' => $fieldErr['username'],
+							'adress_err' => $fieldErr['adress'],
+							'telephone_err' => $fieldErr['telephone']));
 	}
 }
 
