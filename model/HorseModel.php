@@ -45,3 +45,11 @@ function updateHorse($fields){
 					":horse_jumping" => $fields['horse_jumping'],
 					":horse_id" =>$fields['horse_id']]); 
 }
+
+function deleteHorse($id){
+	$conn = openDatabaseConnection();
+
+	$sql = "DELETE FROM horses WHERE horse_id = :id";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([':id' => $id]);
+}

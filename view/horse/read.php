@@ -34,7 +34,7 @@
           <td>Nee</td>
         <?php } ?>
         <td><a href="<?php echo URL ?>horse/edit/<?php echo $row['horse_id']; ?>"><i class="fas fa-user-edit"></i></a></td>
-        <td><a onclick="return validation()"href="<?php echo URL ?>horse/delete/<?php echo $row['horse_id']; ?>"><i class="fas fa-user-minus"></i></a></td>
+        <td><a href="<?php echo URL ?>horse/delete/<?php echo $row['horse_id']; ?>"><i class="fas fa-user-minus"></i></a></td>
       </tr>
 
       <?php $number+=1; } ?>

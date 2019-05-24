@@ -255,8 +255,32 @@ function update($id){
 function delete($id){
 	login();
 
-	deleteUser($id);
+	$result = getUser($id);
+	render('user/delete', array('result' => $result));
 
-	header('Location: '.URL.' user/read/deleted');
-	exit();
+	
+}
+
+function destroy($id){
+	login();
+
+	deleteUser($id);
+	if ($_SESSION['id'] == $id){
+		// Initialize the session
+		session_start();
+	 
+		// Unset all of the session variables
+		$_SESSION = array();
+	 
+		// Destroy the session.
+		session_destroy();
+		// Redirect to login page
+		header("location:".URL."user/loginform");
+		exit;
+	}
+	else{
+		header('Location: '.URL.' user/read/deleted');
+		exit();
+	}
+
 }

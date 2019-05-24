@@ -20,7 +20,7 @@
         <td><?php echo $row['adress']; ?></td>
         <td><?php echo $row['telephone'] ?></td>
         <td><a href="<?php echo URL ?>user/edit/<?php echo $row['id']; ?>"><i class="fas fa-user-edit"></i></a></td>
-        <td><a onclick="return validation()"href="<?php echo URL ?>user/delete/<?php echo $row['id']; ?>"><i class="fas fa-user-minus"></i></a></td>
+        <td><a href="<?php echo URL ?>user/delete/<?php echo $row['id']; ?>"><i class="fas fa-user-minus"></i></a></td>
       </tr>
 
       <?php $number+=1; } ?>

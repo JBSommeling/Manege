@@ -188,6 +188,18 @@ function update($horse_id){
 							'fieldErr' => $fieldErr,
 							'id' => $id));
 	}
+}
 
-	
+function delete($id){
+	login();
+
+	$result = getHorse($id);
+	render('horse/delete', array('result' =>$result));
+}
+
+function destroy($id){
+	login();
+	deleteHorse($id);
+	header('Location: '.URL.'horse/read');
+	exit();
 }

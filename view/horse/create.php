@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="container">
 		<div class="jumbotron">
-			<form method="POST" action="<?php echo URL ?>horse/store/<?php echo $id; ?>">
+			<form method="POST" action="<?php echo URL ?>horse/store">
 				<div class="form-group">
 					<label for="horse_name">Naam van het paard: <span class="text-danger">* <?php echo $fieldErr['horse_name']; ?></span></label>
 					<input type="text" name="horse_name" id="horse_name" class="form-control" value="<?php echo $fields['horse_name']; ?>">
