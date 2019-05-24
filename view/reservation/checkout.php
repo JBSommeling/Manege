@@ -25,11 +25,8 @@
 			</li>
 		<?php } ?></p>
 		</ul>
-		Totaal aantal ritten(uren): 
-		<?php $total = 0 ?>
-		<?php foreach ($result as $key => $row){ ?>
-			<?php $total += $row['rides'] ?>
-		<?php } ?>
+		Totaal aantal ritten(uren):
+		
 		<?php echo $total ?>
 		<br>Per uur een paard reserveren kost 55 euro:
 		<!-- In controller verwerken -->
