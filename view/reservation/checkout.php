@@ -5,7 +5,7 @@
 		<p>Naam: <?php echo $result[0]['username'] ?> <br>
 			Ruiters ID: <?php echo $result[0]['user_id'] ?> <br>
 			Adres: <?php echo $result[0]['adress']; ?> <br>
-			Tel: <?php echo $result[0]['telephone']; ?>
+			Tel: <?php echo $result[0]['telephone']; ?><br>
 		Paarden: 
 		<ul>
 		<?php foreach ($result as $key => $row) { ?>
