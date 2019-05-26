@@ -23,10 +23,11 @@ function store(){
 		$fields['rides'] = formVal($_POST['rides']);
 	}
 
-	if ($validate){
-		createReservation($fields);	
-		header('Location: '.URL.'reservation/checkout/'.$fields['user_id']);
+	$result = getReservation($fields['user_id']);
 
+	if ($validate){
+			createReservation($fields);	
+			header('Location: '.URL.'reservation/checkout/'.$fields['user_id']);
 	}
 }
 
@@ -38,6 +39,17 @@ function checkout($user_id){
 	foreach ($result as $key => $row){ 
 			$totalhours += $row['rides']; 
 	}
+	$total = $totalhours*55;
+
 	render('reservation/checkout', array('result' => $result,
-										'total' => $totalhours));
+										'totalhours' => $totalhours,
+										'total' => $total));
+}
+
+function read(){
+	login();
+
+	$result = getAllReservations();
+
+	render('reservation/read', array('result' => $result));
 }

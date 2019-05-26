@@ -18,3 +18,12 @@ function getReservation($user_id){
 	 $stmt->execute([':user_id' => $user_id]);
 	 return $stmt->fetchAll();
 }
+
+function getAllReservations(){
+	$conn = openDatabaseConnection();
+
+	$sql = 'SELECT * FROM reservations LEFT JOIN users ON users.user_id = reservations.user_id LEFT JOIN horses ON reservations.horse_id = horses.horse_id GROUP BY reservations.user_id';
+	$stmt = $conn->prepare($sql);
+	$stmt->execute();
+	return $stmt->fetchAll();
+}

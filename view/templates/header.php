@@ -64,6 +64,7 @@
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="<?php echo URL ?>user/read">Overzicht leden</a>
 								<a class="dropdown-item" href="<?php echo URL ?>horse/read">Overzicht paarden</a>
+								<a class="dropdown-item" href="<?php echo URL ?>reservation/read">Overzicht facturen</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo URL ?>horse/create">Paard Registeren</a>
 							</div>

@@ -1,10 +1,11 @@
-<?php var_dump($result); ?>
-
 <div class="row">
-	<div class="jumbotron">
+	
+	<div class="jumbotron alignment">
 		<h1>Uw factuur</h1>
 		<p>Naam: <?php echo $result[0]['username'] ?> <br>
 			Ruiters ID: <?php echo $result[0]['user_id'] ?> <br>
+			Adres: <?php echo $result[0]['adress']; ?> <br>
+			Tel: <?php echo $result[0]['telephone']; ?>
 		Paarden: 
 		<ul>
 		<?php foreach ($result as $key => $row) { ?>
@@ -25,11 +26,10 @@
 			</li>
 		<?php } ?></p>
 		</ul>
-		Totaal aantal ritten(uren):
-		
-		<?php echo $total ?>
-		<br>Per uur een paard reserveren kost 55 euro:
-		<!-- In controller verwerken -->
-
+		Totaal aantal ritten(uren): <?php echo $totalhours ?>
+		<br>Per uur een paard reserveren kost 55 euro: <br>
+		Totale kosten zijn: <?php echo $totalhours ?> x 55 euro = <?php echo $total ?> euro. <br>
+		<br>
+		<a href="<?php echo URL ?>user/index"><button class="btn btn-secondary w-100">Terug naar hoofdpagina</button></a>
 	</div>
 </div>
