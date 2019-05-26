@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 26 mei 2019 om 10:02
+-- Gegenereerd op: 26 mei 2019 om 14:25
 -- Serverversie: 5.6.37
 -- PHP-versie: 7.1.8
 
@@ -51,7 +51,7 @@ INSERT INTO `horses` (`horse_id`, `horse_name`, `horse_breed`, `horse_age`, `wit
 --
 
 CREATE TABLE IF NOT EXISTS `reservations` (
-  `id` int(11) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `horse_id` int(11) NOT NULL,
   `rides` int(11) NOT NULL
@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `reservations` (
 -- Gegevens worden geëxporteerd voor tabel `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `user_id`, `horse_id`, `rides`) VALUES
-(1, 469310323, 5, 2),
+INSERT INTO `reservations` (`reservation_id`, `user_id`, `horse_id`, `rides`) VALUES
+(1, 469310323, 11, 2),
 (5, 469310323, 5, 3),
 (6, 469310323, 11, 2),
 (7, 2080613952, 5, 2);
@@ -105,7 +105,7 @@ ALTER TABLE `horses`
 -- Indexen voor tabel `reservations`
 --
 ALTER TABLE `reservations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`reservation_id`);
 
 --
 -- Indexen voor tabel `users`
@@ -126,7 +126,7 @@ ALTER TABLE `horses`
 -- AUTO_INCREMENT voor een tabel `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --

@@ -22,7 +22,8 @@
 					 (Springsport: nee)
 				<?php } ?>
 				
-
+			<a href="<?php echo URL ?>reservation/edit/<?php echo $row['reservation_id']; ?>"><i class="fas fa-edit"></i></a>
+			<a href="<?php echo URL ?>reservation/delete/<?php echo$row['reservation_id']; ?>"><i class="fas fa-trash"></i></a>
 			</li>
 		<?php } ?></p>
 		</ul>

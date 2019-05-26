@@ -53,3 +53,40 @@ function read(){
 
 	render('reservation/read', array('result' => $result));
 }
+
+function edit($id){
+	login();
+
+	$result = getReservationById($id);
+
+	render('reservation/edit', array('reservation' => $result,
+									'horses' => getAllHorses()));
+}
+
+function update($reservation_id, $user_id){
+	login();
+	$fields = [	'horse_id' => "",
+				'rides' => ""];
+
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+		$validate = true;
+		$fields['horse_id'] = formVal($_POST['horse_id']);
+		if ($_POST['rides'] <= 0 || empty($_POST['rides'])){
+			$validate = false;
+		}
+		else{
+			$fields['rides'] = formVal($_POST['rides']);
+		}
+	}
+
+	if ($validate) {
+		updateReservationById($reservation_id, $fields);
+		header('Location: '.URL.'reservation/checkout/'.$user_id);
+	}
+	else{
+		$result = getReservationById($reservation_id);
+		render('reservation/edit', array('reservation' => $result,
+											'horses' => getAllHorses()));
+	}
+}

@@ -27,3 +27,23 @@ function getAllReservations(){
 	$stmt->execute();
 	return $stmt->fetchAll();
 }
+
+function getReservationById($id){
+	$conn = openDatabaseConnection();
+
+	$sql = 'SELECT * FROM reservations LEFT JOIN horses ON reservations.horse_id = horses.horse_id LEFT JOIN users ON users.user_id = reservations.user_id WHERE reservations.reservation_id = :id';
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([':id' => $id]);
+	return $stmt->fetch();
+}
+
+function updateReservationById($id, $fields){
+	$conn = openDatabaseConnection();
+
+	$sql = 'UPDATE reservations SET horse_id = :horse_id, rides = :rides WHERE reservation_id = :id';
+		$stmt = $conn->prepare($sql);
+	$stmt->execute([':horse_id' => $fields['horse_id'],
+					':rides' => $fields['rides'],
+					':id' => $id]);
+	return $stmt->fetch();
+}
