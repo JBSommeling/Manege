@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 26 mei 2019 om 14:25
+-- Gegenereerd op: 27 mei 2019 om 17:21
 -- Serverversie: 5.6.37
 -- PHP-versie: 7.1.8
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `horses` (
   `wither_height` float NOT NULL,
   `horse_pony` tinyint(1) NOT NULL,
   `horse_jumping` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `horses`
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `horses` (
 
 INSERT INTO `horses` (`horse_id`, `horse_name`, `horse_breed`, `horse_age`, `wither_height`, `horse_pony`, `horse_jumping`) VALUES
 (5, 'Horsea', 'Pokemon', 5, 140, 1, 0),
-(11, 'Seadra', 'Waterpokemon', 5, 160, 0, 1);
+(11, 'Seadra', 'Waterpokemon', 5, 160, 0, 1),
+(12, 'Bonfire', 'BonfirePaard', 10, 170, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -55,17 +56,15 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `user_id` int(11) NOT NULL,
   `horse_id` int(11) NOT NULL,
   `rides` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `reservations`
 --
 
 INSERT INTO `reservations` (`reservation_id`, `user_id`, `horse_id`, `rides`) VALUES
-(1, 469310323, 11, 2),
-(5, 469310323, 5, 3),
-(6, 469310323, 11, 2),
-(7, 2080613952, 5, 2);
+(22, 469310323, 12, 5),
+(23, 469310323, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -121,12 +120,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `horses`
 --
 ALTER TABLE `horses`
-  MODIFY `horse_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `horse_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT voor een tabel `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --

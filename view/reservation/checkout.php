@@ -31,6 +31,8 @@
 		<br>Per uur een paard reserveren kost 55 euro: <br>
 		Totale kosten zijn: <?php echo $totalhours ?> x 55 euro = <?php echo $total ?> euro. <br>
 		<br>
-		<a href="<?php echo URL ?>user/index"><button class="btn btn-secondary w-100">Terug naar hoofdpagina</button></a>
+		<a href="<?php echo URL ?>user/index"><button class="btn btn-secondary w-100 mb-4">Terug naar hoofdpagina</button></a>
+		<a href="<?php echo URL ?>reservation/read"><button class="btn btn-secondary w-100">Vorige</button></a>
+
 	</div>
 </div>

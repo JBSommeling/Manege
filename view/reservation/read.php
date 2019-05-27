@@ -18,7 +18,7 @@
         <td><?php echo $row['username']; ?></td>
         <td><?php echo $row['user_id']; ?></td>
         <td><a href="<?php echo URL ?>reservation/checkout/<?php echo $row['user_id']; ?>"><i class="fas fa-eye"></i></a></td>
-        <td><a href="<?php echo URL ?>user/delete/<?php echo $row['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
+        <td><a href="<?php echo URL ?>reservation/deleteReceipt/<?php echo $row['reservation_id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
       </tr>
 
       <?php $number+=1; } ?>

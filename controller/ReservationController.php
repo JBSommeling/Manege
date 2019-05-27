@@ -90,3 +90,32 @@ function update($reservation_id, $user_id){
 											'horses' => getAllHorses()));
 	}
 }
+
+function delete($reservation_id){
+	login();
+
+	$result = getReservationById($reservation_id);
+
+	render('reservation/delete', array('result' => $result));
+}
+
+function destroy($reservation_id){
+	login();
+
+	deleteReservation($reservation_id);
+	header("Location: ".URL."reservation/read");
+}
+
+function deleteReceipt($reservation_id){
+	login();
+
+	$result = getReservationById($reservation_id);
+	render('reservation/deleteReceipt', array('result' => $result));
+
+}
+
+function destroyReceipt($user_id){
+	login();
+	deleteReceipts($user_id);
+	header('Location: '.URL.'reservation/read');
+}
