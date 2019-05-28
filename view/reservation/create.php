@@ -10,17 +10,19 @@
 					<?php } ?>
 				</select>
 			</div>
-			<div class="form-group">
+			<p>Eén rit is 60 minuten. <span class="text-danger">* <?php echo $fieldErr['horse_id']; echo $fieldErr['rides']; ?></span></p>
+			<div class="form-group d-inline-block">
 				<label for="horse_name">Selecteer paard:</label>
-				<select name="horse_id" id="horse_id" class="form-control">
+				<select name="horse_id" id="horse_id" class="form-control d-inline-block">
+					<option value=""></option>
 					<?php foreach ($result_horses as $key => $row){ ?>
 						<option value="<?php echo $row['horse_id'] ?>"><?php echo $row['horse_name'] ?></option>
 					<?php } ?>
 				</select>
 			</div>
-			<div class="form-group">
-				<label for="rides">Selecteer aantal ritten (één rit is 60 minuten):</label>
-				<input type="number" name="rides" id="rides" class="form-control" min="1" max="12">
+			<div class="form-group d-inline-block">
+				<label for="rides">Selecteer aantal ritten:</label>
+				<input type="number" name="rides" id="rides" class="form-control d-inline-block" min="1" max="12">
 			</div>
 			<button type="submit" class="btn btn-secondary w-100">Reserveer</button>
 		</form>

@@ -15,11 +15,21 @@ function store(){
 	$fields = ['user_id' => "",
 				'horse_id' => "",
 				'rides' => ""];
-
+	$fieldErr = [];
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$validate = true;
 		$fields['user_id'] = formVal($_POST['user_id']);
-		$fields['horse_id'] = formVal($_POST['horse_id']);
+		if (empty($_POST['horse_id'])) {
+			$fieldErr['horse_id'] = 'U moet een paard selecteren.';
+			$validate = false;
+		}
+		else{
+			$fields['horse_id'] = formVal($_POST['horse_id']);
+		}
+		if (empty($_POST['rides']) || $_POST['rides'] == 0) {
+			$fieldErr['rides'] = ' U moet minimaal 1 rit selecteren.';
+			$validate = false;
+		}
 		$fields['rides'] = formVal($_POST['rides']);
 	}
 
@@ -28,6 +38,11 @@ function store(){
 	if ($validate){
 			createReservation($fields);	
 			header('Location: '.URL.'reservation/checkout/'.$fields['user_id']);
+	}
+	else{
+		render('reservation/create', array('result_users' => getAllUsers(),
+										'result_horses' => getAllHorses(),
+										'fieldErr' => $fieldErr));
 	}
 }
 
