@@ -14,12 +14,6 @@ function isValidReservation($fields){
 	else{
 		return true;
 	}
-
-	// $sql = 'SELECT *, 
-	// date_add(time_start, INTERVAL rides HOUR) as time_end FROM reservations WHERE 
-	// ('2019-05-29 08:00:00' > time_start AND '2019-05-29 08:00:00' < date_add(time_start, INTERVAL rides HOUR)) 
- //    OR 
- //    (date_add('2019-05-29 08:00:00', INTERVAL 5 HOUR) > time_start AND date_add('2019-05-29 08:00:00', INTERVAL 5 HOUR) < date_add(time_start, INTERVAL rides HOUR))'
 }
 
 
@@ -37,7 +31,7 @@ function createReservation($fields){
 function getReservation($user_id){
 	$conn = openDatabaseConnection();
 
-	$sql = 'SELECT * FROM users LEFT JOIN reservations ON users.user_id = reservations.user_id LEFT JOIN horses ON reservations.horse_id = horses.horse_id WHERE users.user_id = :user_id';
+	$sql = 'SELECT *, date_add(time_start, INTERVAL rides HOUR) as time_end  FROM reservations LEFT JOIN users ON users.user_id = reservations.user_id LEFT JOIN horses ON reservations.horse_id = horses.horse_id WHERE reservations.user_id = :user_id';
 	 $stmt = $conn->prepare($sql);
 	 $stmt->execute([':user_id' => $user_id]);
 	 return $stmt->fetchAll();

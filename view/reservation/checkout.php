@@ -27,6 +27,13 @@
 			</li>
 		<?php } ?></p>
 		</ul>
+		
+		Met de tijden:
+		<ul>
+		<?php foreach ($result as $key => $value){ ?>
+			<li><?php echo $value['horse_name'] ?>; <?php echo $value['time_start']; ?> - <?php echo $value['time_end']; ?></li>	
+		<?php } ?>
+		</ul>
 		Totaal aantal ritten(uren): <?php echo $totalhours ?>
 		<br>Per uur een paard reserveren kost 55 euro: <br>
 		Totale kosten zijn: <?php echo $totalhours ?> x 55 euro = <?php echo $total ?> euro. <br>

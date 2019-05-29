@@ -73,7 +73,6 @@ function store(){
 function checkout($user_id){
 	login();
 	$result = getReservation($user_id);
-
 	$totalhours = 0;
 	foreach ($result as $key => $row){ 
 			$totalhours += $row['rides']; 
