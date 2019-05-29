@@ -2,18 +2,17 @@
 function isValidReservation($fields){
 	$conn = openDatabaseConnection();
 
-	$sql = 'SELECT *, date_add(time_start, INTERVAL rides HOUR) as time_end FROM reservations WHERE (:time_start > time_start AND :time_start < date_add(time_start, INTERVAL rides HOUR)) OR (date_add(:time_start, INTERVAL :rides HOUR) > time_start AND date_add(:time_start, INTERVAL :rides HOUR) < date_add(time_start, INTERVAL rides HOUR))';
+	$sql = "SELECT *, date_add(time_start, INTERVAL rides HOUR) as time_end FROM reservations WHERE horse_id = :horse_id AND ((:time_start >= time_start AND :time_start <= date_add(time_start, INTERVAL rides HOUR)) OR (date_add(:time_start, INTERVAL :rides HOUR) >= time_start AND date_add(:time_start, INTERVAL :rides HOUR) <= date_add(time_start, INTERVAL rides HOUR)))";
 	$stmt = $conn->prepare($sql);
 	$stmt->execute([':rides' => $fields['rides'],
-	    			':time_start' => $fields['time_start']]);
+	    			':time_start' => $fields['time_start'],
+	    			':horse_id' => $fields['horse_id']]);
 	$result = $stmt->fetchAll();
-
 	if (count($result)>0){
-			return false;
-		}
-		else{
-			return true;
-		}
+		return false;
+	}
+	else{
+		return true;
 	}
 
 	// $sql = 'SELECT *, 
