@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="jumbotron">
-		<p class="lead">Een paard huren kost 55 euro per uur.</p>
+		<p class="lead">Een paard huren kost 55 euro per uur. <span class="text-danger">* <?php echo $fieldErr['reservation']; ?></span></p>
 		<form method="POST" action="<?php echo URL ?>reservation/store">
 			<div class="form-group">
 				<label for="user_id">Selecteer ruiter:</label>

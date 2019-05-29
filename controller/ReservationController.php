@@ -10,6 +10,8 @@ function create(){
 										'result_horses' => getAllHorses()));
 }
 
+
+
 function store(){
 	login();
 	$fields = ['user_id' => "",
@@ -47,8 +49,18 @@ function store(){
 	$result = getReservation($fields['user_id']);
 
 	if ($validate){
+		$dateValidation = isValidReservation($fields);
+		if ($dateValidation) {
 			createReservation($fields);	
 			header('Location: '.URL.'reservation/checkout/'.$fields['user_id']);
+		}
+		else{
+			$fieldErr['reservation'] = 'Kan de reservering niet plaatsen. Het paard is dan al bezet.';
+			render('reservation/create', array('result_users' => getAllUsers(),
+										'result_horses' => getAllHorses(),
+										'fieldErr' => $fieldErr,
+										'fields' => $fields));
+		}	
 	}
 	else{
 		render('reservation/create', array('result_users' => getAllUsers(),
