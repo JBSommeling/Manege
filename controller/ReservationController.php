@@ -14,7 +14,8 @@ function store(){
 	login();
 	$fields = ['user_id' => "",
 				'horse_id' => "",
-				'rides' => ""];
+				'rides' => "",
+				'time_start'=> ""];
 	$fieldErr = [];
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$validate = true;
@@ -30,7 +31,17 @@ function store(){
 			$fieldErr['rides'] = ' U moet minimaal 1 rit selecteren.';
 			$validate = false;
 		}
-		$fields['rides'] = formVal($_POST['rides']);
+		else{
+			$fields['rides'] = formVal($_POST['rides']);
+		}
+
+		if (empty($_POST['time_start'])){
+			$fieldErr['time_start'] = 'U moet een tijd selecteren.';
+			$validate = false;
+		}
+		else{
+			$fields['time_start'] = formVal($_POST['time_start']);
+		}
 	}
 
 	$result = getReservation($fields['user_id']);
@@ -42,7 +53,8 @@ function store(){
 	else{
 		render('reservation/create', array('result_users' => getAllUsers(),
 										'result_horses' => getAllHorses(),
-										'fieldErr' => $fieldErr));
+										'fieldErr' => $fieldErr,
+										'fields' => $fields));
 	}
 }
 

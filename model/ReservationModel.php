@@ -3,11 +3,12 @@
 function createReservation($fields){
 	$conn = openDatabaseConnection();
 
-	$sql = "INSERT INTO reservations(user_id, horse_id, rides) VALUES( :user_id, :horse_id, :rides)";
+	$sql = "INSERT INTO reservations(user_id, horse_id, rides, time_start) VALUES( :user_id, :horse_id, :rides, :time_start)";
 	        $stmt = $conn->prepare($sql);
 	        $stmt->execute([':user_id' => $fields['user_id'],
 	    					':horse_id' => $fields['horse_id'],
-	    					':rides' => $fields['rides']]);
+	    					':rides' => $fields['rides'],
+	    					':time_start' => $fields['time_start']]);
 }
 
 function getReservation($user_id){

@@ -22,7 +22,11 @@
 			</div>
 			<div class="form-group d-inline-block">
 				<label for="rides">Selecteer aantal ritten:</label>
-				<input type="number" name="rides" id="rides" class="form-control d-inline-block" min="1" max="12">
+				<input type="number" name="rides" id="rides" class="form-control d-inline-block" min="1" max="12" value="<?php echo $fields['rides']; ?>">
+			</div>
+			<div class="form-group">
+				<label for="time">Selecteer de starttijd: <span class="text-danger">* <?php echo $fieldErr['time_start']; ?></span></label>
+				<input type="datetime-local" name="time_start" class="form-control" value="<?php echo $fields['time_start']; ?>">
 			</div>
 			<button type="submit" class="btn btn-secondary w-100">Reserveer</button>
 		</form>
