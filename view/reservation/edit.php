@@ -15,6 +15,10 @@
 				<label for="rides">Selecteer aantal ritten (één rit is 60 minuten):</label>
 				<input type="number" name="rides" id="rides" class="form-control" min="1" max="12" value="<?php echo $reservation['rides']; ?>">
 			</div>
+			<div class="form-group">
+				<label for="time">Selecteer de starttijd: <span class="text-danger">* <?php echo $fieldErr['time_start']; ?></span></label>
+				<input type="datetime-local" name="time_start" class="form-control">
+			</div>
 			<button type="submit" class="btn btn-secondary w-100">Opslaan</button>
 		</form>
 	</div>

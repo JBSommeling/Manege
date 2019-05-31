@@ -96,7 +96,6 @@ function edit($id){
 	login();
 
 	$result = getReservationById($id);
-
 	render('reservation/edit', array('reservation' => $result,
 									'horses' => getAllHorses()));
 }
@@ -104,7 +103,8 @@ function edit($id){
 function update($reservation_id, $user_id){
 	login();
 	$fields = [	'horse_id' => "",
-				'rides' => ""];
+				'rides' => "",
+				'time_start' => ""];
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -116,16 +116,35 @@ function update($reservation_id, $user_id){
 		else{
 			$fields['rides'] = formVal($_POST['rides']);
 		}
+		if (empty($_POST['time_start'])) {
+			$validate = false;
+			$fieldErr['time_start'] = 'U moet een datum prikken.';
+		}
+		else{
+			$fields['time_start'] = formVal($_POST['time_start']);
+		}
 	}
 
 	if ($validate) {
-		updateReservationById($reservation_id, $fields);
-		header('Location: '.URL.'reservation/checkout/'.$user_id);
+		$dateValidation = isValidReservation($fields);
+			if ($dateValidation) {
+				updateReservationById($reservation_id, $fields);
+				header('Location: '.URL.'reservation/checkout/'.$user_id);
+			}
+			else{
+				
+				$fieldErr['time_start'] = 'Kan de reservering niet plaatsen. Het paard is dan al bezet.';
+				$result = getReservationById($reservation_id);
+				render('reservation/edit', array('reservation' => $result,
+											'horses' => getAllHorses(),
+											'fieldErr' => $fieldErr));
+			}
 	}
 	else{
 		$result = getReservationById($reservation_id);
 		render('reservation/edit', array('reservation' => $result,
-											'horses' => getAllHorses()));
+											'horses' => getAllHorses(),
+											'fieldErr' => $fieldErr));
 	}
 }
 

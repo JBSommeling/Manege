@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 29 mei 2019 om 10:01
+-- Gegenereerd op: 31 mei 2019 om 10:16
 -- Serverversie: 5.6.37
 -- PHP-versie: 7.1.8
 
@@ -56,15 +56,16 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `horse_id` int(11) NOT NULL,
   `rides` int(11) NOT NULL,
   `time_start` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `reservations`
 --
 
 INSERT INTO `reservations` (`reservation_id`, `user_id`, `horse_id`, `rides`, `time_start`) VALUES
-(19, 469310323, 6, 5, '2019-05-29 08:00:00'),
-(20, 469310323, 5, 5, '2019-05-29 05:00:00');
+(19, 469310323, 6, 5, '2019-05-31 08:00:00'),
+(20, 469310323, 5, 5, '2019-05-29 05:00:00'),
+(21, 2080613952, 5, 5, '2019-05-31 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ ALTER TABLE `horses`
 -- AUTO_INCREMENT voor een tabel `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
