@@ -46,6 +46,15 @@ function getAllReservations(){
 	return $stmt->fetchAll();
 }
 
+function getSchedule(){
+	$conn = openDatabaseConnection();
+
+	$sql = 'SELECT *, date_add(time_start, INTERVAL rides HOUR) as time_end  FROM reservations LEFT JOIN users ON users.user_id = reservations.user_id LEFT JOIN horses ON reservations.horse_id = horses.horse_id ORDER BY horses.horse_name ASC';
+	$stmt = $conn->prepare($sql);
+	$stmt->execute();
+	return $stmt->fetchAll();
+}
+
 function getReservationById($id){
 	$conn = openDatabaseConnection();
 
@@ -82,3 +91,4 @@ function deleteReceipts($user_id){
 	$stmt = $conn->prepare($sql);
 	$stmt->execute([':user_id' => $user_id]);
 }
+

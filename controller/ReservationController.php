@@ -7,7 +7,8 @@ require(ROOT . "model/UserModel.php");
 function create(){
 	login();
 	render('reservation/create', array('result_users' => getAllUsers(),
-										'result_horses' => getAllHorses()));
+										'result_horses' => getAllHorses(),
+										'result_schedule' => getSchedule()));
 }
 
 
@@ -58,6 +59,7 @@ function store(){
 			$fieldErr['reservation'] = 'Kan de reservering niet plaatsen. Het paard is dan al bezet.';
 			render('reservation/create', array('result_users' => getAllUsers(),
 										'result_horses' => getAllHorses(),
+										'result_schedule' => getSchedule(),
 										'fieldErr' => $fieldErr,
 										'fields' => $fields));
 		}	
@@ -65,6 +67,7 @@ function store(){
 	else{
 		render('reservation/create', array('result_users' => getAllUsers(),
 										'result_horses' => getAllHorses(),
+										'result_schedule' => getSchedule(),
 										'fieldErr' => $fieldErr,
 										'fields' => $fields));
 	}
@@ -97,7 +100,8 @@ function edit($id){
 
 	$result = getReservationById($id);
 	render('reservation/edit', array('reservation' => $result,
-									'horses' => getAllHorses()));
+									'horses' => getAllHorses(),
+									'result_schedule' => getSchedule()));
 }
 
 function update($reservation_id, $user_id){
@@ -137,14 +141,16 @@ function update($reservation_id, $user_id){
 				$result = getReservationById($reservation_id);
 				render('reservation/edit', array('reservation' => $result,
 											'horses' => getAllHorses(),
-											'fieldErr' => $fieldErr));
+											'fieldErr' => $fieldErr,
+											'result_schedule' => getSchedule()));
 			}
 	}
 	else{
 		$result = getReservationById($reservation_id);
 		render('reservation/edit', array('reservation' => $result,
 											'horses' => getAllHorses(),
-											'fieldErr' => $fieldErr));
+											'fieldErr' => $fieldErr,
+											'result_schedule' => getSchedule()));
 	}
 }
 
